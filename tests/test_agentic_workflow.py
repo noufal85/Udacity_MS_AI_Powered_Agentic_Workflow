@@ -75,6 +75,35 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn("Feature Name", rendered)
         self.assertIn("Task ID", rendered)
 
+    def test_run_workflow_labels_results_by_step_meaning(self):
+        planner = SimpleNamespace(
+            extract_steps_from_prompt=lambda prompt: [
+                "Define engineering tasks",
+                "Define user stories",
+                "Define product features",
+            ]
+        )
+        router = SimpleNamespace(
+            route=lambda step: {
+                "Define engineering tasks": "Task ID: ER-001",
+                "Define user stories": "As a user, I want routing so that replies are faster.",
+                "Define product features": "Feature Name: Smart Routing",
+            }[step]
+        )
+        output = io.StringIO()
+
+        with redirect_stdout(output):
+            self.workflow.run_workflow(
+                "Create the development plan", planner=planner, router=router
+            )
+
+        rendered = output.getvalue()
+        self.assertLess(
+            rendered.index("## Engineering Tasks\nTask ID"),
+            rendered.index("## User Stories\nAs a user"),
+        )
+        self.assertIn("## Product Features\nFeature Name", rendered)
+
 
 if __name__ == "__main__":
     unittest.main()

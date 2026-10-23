@@ -191,9 +191,18 @@ def run_workflow(workflow_prompt, planner=None, router=None):
         print(f"Step {step_number} result:\n{result}")
 
     print("\n*** Consolidated development plan ***")
-    section_names = ["User Stories", "Product Features", "Engineering Tasks"]
-    for index, result in enumerate(completed_steps):
-        heading = section_names[index] if index < len(section_names) else f"Workflow Result {index + 1}"
+    for index, (step, result) in enumerate(
+        zip(workflow_steps, completed_steps), start=1
+    ):
+        normalized_step = step.lower()
+        if "stor" in normalized_step:
+            heading = "User Stories"
+        elif "feature" in normalized_step:
+            heading = "Product Features"
+        elif "task" in normalized_step:
+            heading = "Engineering Tasks"
+        else:
+            heading = f"Workflow Result {index}"
         print(f"\n## {heading}\n{result}")
 
     return completed_steps

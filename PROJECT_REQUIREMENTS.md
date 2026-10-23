@@ -32,7 +32,7 @@ When the final rubric and starter README differ, the final rubric controls. In p
 | Q-1 | Keys are never hardcoded and generated/private files are excluded | All | Secret scan and hygiene check | Verified |
 | Q-2 | Dependencies install and project compiles/tests cleanly | All | Isolated environment, `unittest`, `compileall` | Verified |
 | E-1 | Live evidence for all scripts and final workflow | `outputs/` | Live execution | Blocked: no `OPENAI_API_KEY` is available |
-| S-1 | Public repository is named `Udacity_MS_AI_Powered_Agentic_Workflow` | Repository | Remote/visibility check | Not authorized |
+| S-1 | Public repository is named `Udacity_MS_AI_Powered_Agentic_Workflow` | Repository | Remote/visibility check | Verified: `noufal85/Udacity_MS_AI_Powered_Agentic_Workflow` |
 
 Comparable public repositories are advisory only; no external code or text is copied into this project.
 

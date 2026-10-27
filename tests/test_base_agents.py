@@ -1,5 +1,7 @@
 import importlib
+import io
 import os
+import runpy
 import signal
 import sys
 import tempfile
@@ -7,6 +9,7 @@ import unittest
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
+from contextlib import redirect_stdout
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,6 +50,17 @@ class FakeClient:
 
 
 class BaseAgentTests(unittest.TestCase):
+    def test_augmented_demo_prints_knowledge_and_persona_explanations(self):
+        client = FakeClient(chat_outputs=["Dear students, Paris."])
+        output = io.StringIO()
+        with patch.object(base_agents, "OpenAI", return_value=client):
+            with redirect_stdout(output):
+                runpy.run_path(str(PHASE_1 / "augmented_prompt_agent.py"))
+        rendered = output.getvalue()
+        self.assertIn("Dear students, Paris.", rendered)
+        self.assertIn("Knowledge source:", rendered)
+        self.assertIn("Persona impact:", rendered)
+
     def test_chat_model_can_be_overridden_for_live_execution(self):
         client = FakeClient(chat_outputs=["OK"])
         with patch.dict(os.environ, {"OPENAI_CHAT_MODEL": "gpt-4.1-mini"}):

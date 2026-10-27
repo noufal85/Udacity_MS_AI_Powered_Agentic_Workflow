@@ -2,6 +2,29 @@
 
 This project implements a reusable OpenAI agent library and an agentic project-management workflow for the supplied Email Router product specification.
 
+## Resubmission note
+
+Added successful live execution evidence for all seven Phase 1 agent scripts
+and the complete Phase 2 workflow under [evidence/](evidence/README.md).
+The [final development plan](evidence/live/development_plan.txt) contains
+15 user stories, six product features, and ten engineering tasks. Every story
+contains the literal `so that`; every feature and task includes all required
+fields. Full terminal logs, rendered transcript images, run metadata, and
+validation results are included.
+
+Live runs used `gpt-4.1-mini` with the project owner's explicit authorization
+because the API rejected the rubric-specified `gpt-3.5-turbo` as deprecated.
+The original model remains the code's compatibility default, and
+`text-embedding-3-large` is unchanged. This substitution is disclosed for the
+reviewer; course approval of the exception is not assumed.
+
+The optional review suggestions are also addressed: the four workflow functions
+now have concise docstrings, and consolidated section headings follow the
+selected specialist route. The augmented-agent transcript also explicitly
+explains its knowledge source and persona impact. All 17 offline tests pass,
+including the regression test for planner steps that mention user stories in
+multiple stages.
+
 ## Project structure
 
 - `phase_1/workflow_agents/base_agents.py`: seven reusable agent classes

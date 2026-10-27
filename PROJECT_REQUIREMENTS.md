@@ -43,3 +43,30 @@ Comparable public repositories are advisory only; no external code or text is co
 | `https://github.com/MelvinJoshua1375/ai-powered-agentic-workflow-for-project-management` | Keeps matching Phase 1 and Phase 2 agent libraries; documents live output evidence separately | Agent libraries are kept byte-for-byte identical; actual live logs are included separately |
 | `https://github.com/peymangraph/ai-agentic-project-management-workflow` | Includes a root README, environment exclusions, and a rubric checklist | Added root setup/run guidance, `.gitignore`, tests, and this rubric matrix |
 | `https://github.com/tobiassteidle/AgenticAI_ND_P2_Agentic-Workflow-for-Project-Management` | Preserves the two-phase starter layout and documents required output structures | Preserved starter filenames and added deterministic checks for the required structures |
+
+### Resubmission comparison and independent review
+
+Two independent review agents checked the feedback and the full thirteen-criterion
+rubric against baseline `0356c56`. Both verified the eight successful runs,
+manifest integrity, required output structures, route-based headings, and four
+docstrings. The rubric reviewer identified an additional literal requirement:
+the augmented-agent output must explain the knowledge source and persona impact.
+A failing regression test reproduced that omission, the script now prints both
+explanations, and its live log and rendered transcript were recaptured. The
+model substitution remains disclosed as a course approval caveat.
+
+The following public repositories were inspected through GitHub's API at the
+listed revisions. Repository trees and README files were used for comparison;
+no external implementation or prose was copied. Their grading outcomes were
+not verified.
+
+| Repository | Inspected revision | Observation and conclusion |
+|---|---|---|
+| `MelvinJoshua1375/ai-powered-agentic-workflow-for-project-management` | `0ffc160d9e3127a0861a426cb25a152ccc514798` | Two phase directories and eight per-script output files match the expected organization. Its README describes those logs as simulated, so it is not a standard for successful live-execution evidence. |
+| `peymangraph/ai-agentic-project-management-workflow` | `ffece31f8402cb7c5ce12b2f987e6b8a09f365f0` | Separate submission outputs, a rubric checklist, and explicit story/feature/task formats support this project's evidence map and field checks. Its root README contains an outdated development-status statement, illustrating why actual artifacts matter more than status prose. |
+| `tobiassteidle/AgenticAI_ND_P2_Agentic-Workflow-for-Project-Management` | `8c8c70b768664451ef98116f5641ce173c0c2462` | Preserves the starter layout and stores Phase 1 and Phase 2 output text separately. Its tracked RAG intermediate CSVs are not adopted here because the assignment excludes datasets from the submission. |
+
+The comparison supports the two-phase structure, seven demonstration captures,
+complete workflow capture, reproducible setup instructions, and evidence index.
+The supplied rubric and reviewer feedback remain authoritative, including the
+need to disclose the replacement model rather than claiming the original ran.

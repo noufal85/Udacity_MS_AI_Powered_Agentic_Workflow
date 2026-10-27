@@ -1,2 +1,4 @@
 Dear students,  
 The capital of France is Paris.
+Knowledge source: The answer comes from the model's general knowledge.
+Persona impact: The professor system prompt changes the tone and opening to begin with 'Dear students,'.

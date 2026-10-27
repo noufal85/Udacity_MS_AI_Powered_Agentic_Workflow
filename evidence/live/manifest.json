@@ -6,7 +6,7 @@
   "python": "3.13.5",
   "source_sha256": {
     "phase_1/direct_prompt_agent.py": "fe95ab32fa75751a15b9e7e0c2154ea2368ef0eb61bb907d0e44319ff6c2a4c3",
-    "phase_1/augmented_prompt_agent.py": "2acfb03a9885538e3b25823f2f485e744fa6c61614f696dee54a43c594216cfb",
+    "phase_1/augmented_prompt_agent.py": "39840b09b6ede91179da3bc3c6413be0cd891dd94c01182fd9f38f0bdb966aee",
     "phase_1/knowledge_augmented_prompt_agent.py": "a5259abc1ba71a2406121cb4174c5320902036a3bc3a757f8be8269f936c6a55",
     "phase_1/rag_knowledge_prompt_agent.py": "38b54fc3d3d6ab090340fc2819c906219de47ff3f6be5402681713a034fb343d",
     "phase_1/evaluation_agent.py": "a9b432eb7d3e28a5a36c7d10edb08d26acc56a7b29029829fa1c9f8407156295",
@@ -29,12 +29,12 @@
     },
     {
       "script": "phase_1/augmented_prompt_agent.py",
-      "started_utc": "2026-10-27T03:48:05.308682+00:00",
-      "finished_utc": "2026-10-27T03:48:06.946303+00:00",
+      "started_utc": "2026-10-27T05:18:01.504663+00:00",
+      "finished_utc": "2026-10-27T05:18:04.004389+00:00",
       "exit_code": 0,
       "log": "evidence/live/augmented_prompt_agent.txt",
-      "log_sha256": "594a9f3a71985a4f661d994e3ee0bf750f2d3644852f8f24e6a5606dd82d962f",
-      "bytes": 49
+      "log_sha256": "1ff2fe5cbb1bc6a6c9e30929621c3e92d6f890ca51438a7045a436917664a251",
+      "bytes": 225
     },
     {
       "script": "phase_1/knowledge_augmented_prompt_agent.py",
@@ -93,7 +93,7 @@
   ],
   "derived_artifacts": {
     "evidence/live/action_planning_agent.png": "79c64ee1f204f6a7bc10a7fa0d92e7973e3ccd0a1345c597c3bcd031ce874e3e",
-    "evidence/live/augmented_prompt_agent.png": "8c1b3c6fc471357c69bc55f08b93bc709f4edae0132856be1a813aff0c2e1f06",
+    "evidence/live/augmented_prompt_agent.png": "da0aa4beb3ecd3c91eaff739d92d645f77e88143b3aabf7448eb6928dc04222c",
     "evidence/live/direct_prompt_agent.png": "7abab06d6b6a6cf7d45f523e6395819a4971fc6920ca5803facb5bae4793449c",
     "evidence/live/evaluation_agent.png": "5cce0d48d1a967452ff7cf2f41af328c45f9f79a784c0d320237412799bdf4c9",
     "evidence/live/knowledge_augmented_prompt_agent.png": "2daf208c7af48b90b02a0ea97394731e17091d59bb4c50fde21189c10f4af8b1",

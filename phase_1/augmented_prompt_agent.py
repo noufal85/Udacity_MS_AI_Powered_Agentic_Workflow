@@ -17,5 +17,8 @@ augmented_agent_response = augmented_agent.respond(prompt)
 # Print the agent's response
 print(augmented_agent_response)
 
-# The answer comes from the model's general knowledge. The system prompt changes
-# the tone and opening so the response follows the professor persona.
+print("Knowledge source: The answer comes from the model's general knowledge.")
+print(
+    "Persona impact: The professor system prompt changes the tone and opening "
+    "to begin with 'Dear students,'."
+)

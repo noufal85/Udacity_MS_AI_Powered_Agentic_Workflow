@@ -6,6 +6,7 @@ test_run_workflow_labels_results_by_step_meaning (test_agentic_workflow.Workflow
 test_support_functions_pass_step_directly_to_evaluator (test_agentic_workflow.WorkflowTests.test_support_functions_pass_step_directly_to_evaluator) ... ok
 test_action_planner_returns_clean_steps (test_base_agents.BaseAgentTests.test_action_planner_returns_clean_steps) ... ok
 test_augmented_agent_applies_persona_and_resets_context (test_base_agents.BaseAgentTests.test_augmented_agent_applies_persona_and_resets_context) ... ok
+test_augmented_demo_prints_knowledge_and_persona_explanations (test_base_agents.BaseAgentTests.test_augmented_demo_prints_knowledge_and_persona_explanations) ... ok
 test_chat_model_can_be_overridden_for_live_execution (test_base_agents.BaseAgentTests.test_chat_model_can_be_overridden_for_live_execution) ... ok
 test_direct_prompt_agent_sends_only_user_prompt (test_base_agents.BaseAgentTests.test_direct_prompt_agent_sends_only_user_prompt) ... ok
 test_evaluation_agent_refines_until_accepted (test_base_agents.BaseAgentTests.test_evaluation_agent_refines_until_accepted) ... ok
@@ -16,7 +17,7 @@ test_rag_uses_configured_endpoint_for_embeddings (test_base_agents.BaseAgentTest
 test_router_selects_highest_cosine_similarity (test_base_agents.BaseAgentTests.test_router_selects_highest_cosine_similarity) ... ok
 
 ----------------------------------------------------------------------
-Ran 16 tests in 0.005s
+Ran 17 tests in 0.005s
 
 OK
 

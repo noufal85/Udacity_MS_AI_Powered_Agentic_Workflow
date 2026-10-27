@@ -57,5 +57,10 @@ and tasks also mentioned user stories. A regression test now covers that case,
 and consolidated headings follow the actual selected route. Four concise
 workflow docstrings address the reviewer's other optional suggestion.
 
+The independent rubric review also checked the augmented-agent demonstration
+literally against the execution-output criterion. Its explanation of knowledge
+source and persona impact is now printed in the live transcript, with a
+regression test verifying both explanatory messages.
+
 The earlier access-check document is retained as historical diagnostic evidence.
 The logs in `live/` are the final runs after the route-heading correction.

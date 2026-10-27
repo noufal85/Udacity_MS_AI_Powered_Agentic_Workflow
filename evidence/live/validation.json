@@ -26,5 +26,6 @@
   ],
   "source_hashes_verified": true,
   "log_hashes_verified": true,
-  "status": "PASS"
+  "status": "PASS",
+  "augmented_knowledge_source_and_persona_explanations": true
 }

@@ -31,7 +31,7 @@ When the final rubric and starter README differ, the final rubric controls. In p
 | P2-5 | Final output contains user stories, product features, and engineering tasks in the required structures | Same | Prompt/static inspection; live run if key exists | Structurally verified; live run blocked |
 | Q-1 | Keys are never hardcoded and generated/private files are excluded | All | Secret scan and hygiene check | Verified |
 | Q-2 | Dependencies install and project compiles/tests cleanly | All | Isolated environment, `unittest`, `compileall` | Verified |
-| E-1 | Live evidence for all scripts and final workflow | `outputs/` | Live execution | Blocked: supplied credential was rejected by OpenAI with HTTP 401; no failed trace or credential is tracked |
+| E-1 | Live evidence for all scripts and final workflow | `outputs/` | Live execution | Blocked: October 26 access check returns OpenAI HTTP 404 for deprecated `gpt-3.5-turbo` and Vocareum HTTP 400 for unrecognized key; see `evidence/API_ACCESS_CHECK.md` |
 | S-1 | Public repository is named `Udacity_MS_AI_Powered_Agentic_Workflow` | Repository | Remote/visibility check | Verified: `noufal85/Udacity_MS_AI_Powered_Agentic_Workflow` |
 
 Comparable public repositories are advisory only; no external code or text is copied into this project.

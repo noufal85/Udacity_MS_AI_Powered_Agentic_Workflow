@@ -25,6 +25,8 @@ Set the API key in the environment or in an untracked `.env` file:
 
 ```bash
 export OPENAI_API_KEY="your-key"
+export OPENAI_BASE_URL="https://api.openai.com/v1"
+export OPENAI_CHAT_MODEL="gpt-4.1-mini"
 ```
 
 ## Offline validation
@@ -37,6 +39,17 @@ python -m compileall -q phase_1 phase_2 tests
 ```
 
 ## Live execution
+
+Captured live execution evidence is in [evidence/live](evidence/live/). See
+[the evidence guide](evidence/README.md) for the model change, run manifest,
+and output validation results.
+
+The original rubric names `gpt-3.5-turbo`. That remains the code's compatibility
+default, but the API rejected it as deprecated during the October 26 access
+check. The project owner authorized `gpt-4.1-mini` for these live runs. Set
+`OPENAI_CHAT_MODEL` as above to reproduce them; embeddings still use
+`text-embedding-3-large`. The supplied RAG agent also honors `OPENAI_BASE_URL`
+so all eight programs can use the same endpoint.
 
 Run the Phase 1 demonstrations from the project root:
 

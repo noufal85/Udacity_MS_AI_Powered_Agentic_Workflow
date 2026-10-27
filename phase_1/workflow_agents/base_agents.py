@@ -1,4 +1,5 @@
 from openai import OpenAI
+import os
 import numpy as np
 import pandas as pd
 import re
@@ -14,7 +15,7 @@ class DirectPromptAgent:
     def respond(self, prompt):
         client = OpenAI(api_key=self.openai_api_key)
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model=os.getenv("OPENAI_CHAT_MODEL", "gpt-3.5-turbo"),
             messages=[{"role": "user", "content": prompt}],
             temperature=0,
         )
@@ -29,7 +30,7 @@ class AugmentedPromptAgent:
     def respond(self, input_text):
         client = OpenAI(api_key=self.openai_api_key)
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model=os.getenv("OPENAI_CHAT_MODEL", "gpt-3.5-turbo"),
             messages=[
                 {
                     "role": "system",
@@ -61,7 +62,7 @@ class KnowledgeAugmentedPromptAgent:
             "Answer the prompt based on this knowledge, not your own."
         )
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model=os.getenv("OPENAI_CHAT_MODEL", "gpt-3.5-turbo"),
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": input_text},
@@ -103,7 +104,7 @@ class RAGKnowledgePromptAgent:
         Returns:
         list: The embedding vector.
         """
-        client = OpenAI(base_url="https://openai.vocareum.com/v1", api_key=self.openai_api_key)
+        client = OpenAI(base_url=os.getenv("OPENAI_BASE_URL", "https://openai.vocareum.com/v1"), api_key=self.openai_api_key)
         response = client.embeddings.create(
             model="text-embedding-3-large",
             input=text,
@@ -198,9 +199,9 @@ class RAGKnowledgePromptAgent:
 
         best_chunk = df.loc[df['similarity'].idxmax(), 'text']
 
-        client = OpenAI(base_url="https://openai.vocareum.com/v1", api_key=self.openai_api_key)
+        client = OpenAI(base_url=os.getenv("OPENAI_BASE_URL", "https://openai.vocareum.com/v1"), api_key=self.openai_api_key)
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model=os.getenv("OPENAI_CHAT_MODEL", "gpt-3.5-turbo"),
             messages=[
                 {"role": "system", "content": f"You are {self.persona}, a knowledge-based assistant. Forget previous context."},
                 {"role": "user", "content": f"Answer based only on this information: {best_chunk}. Prompt: {prompt}"}
@@ -241,7 +242,7 @@ class EvaluationAgent:
                 "meet the criteria."
             )
             response = client.chat.completions.create(
-                model="gpt-3.5-turbo",
+                model=os.getenv("OPENAI_CHAT_MODEL", "gpt-3.5-turbo"),
                 messages=[
                     {"role": "system", "content": self.persona},
                     {"role": "user", "content": eval_prompt},
@@ -261,7 +262,7 @@ class EvaluationAgent:
                     f"Provide instructions to fix an answer based on these reasons why it is incorrect: {evaluation}"
                 )
                 response = client.chat.completions.create(
-                    model="gpt-3.5-turbo",
+                    model=os.getenv("OPENAI_CHAT_MODEL", "gpt-3.5-turbo"),
                     messages=[
                         {"role": "system", "content": self.persona},
                         {"role": "user", "content": instruction_prompt},
@@ -301,6 +302,7 @@ class RoutingAgent:
         return response.data[0].embedding
 
     def route(self, user_input):
+        self.last_agent_name = None
         input_emb = self.get_embedding(user_input)
         best_agent = None
         best_score = -1
@@ -324,6 +326,7 @@ class RoutingAgent:
             return "Sorry, no suitable agent could be selected."
 
         print(f"[Router] Best agent: {best_agent['name']} (score={best_score:.3f})")
+        self.last_agent_name = best_agent["name"]
         return best_agent["func"](user_input)
 
 
@@ -343,7 +346,7 @@ class ActionPlanningAgent:
             f"context. This is your knowledge: {self.knowledge}"
         )
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model=os.getenv("OPENAI_CHAT_MODEL", "gpt-3.5-turbo"),
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt},

@@ -1,0 +1,72 @@
+test_headings_follow_selected_routes_when_steps_share_story_words (test_agentic_workflow.WorkflowTests.test_headings_follow_selected_routes_when_steps_share_story_words) ... ok
+test_product_spec_is_loaded (test_agentic_workflow.WorkflowTests.test_product_spec_is_loaded) ... ok
+test_routes_have_required_shape_and_roles (test_agentic_workflow.WorkflowTests.test_routes_have_required_shape_and_roles) ... ok
+test_run_workflow_keeps_and_prints_all_results (test_agentic_workflow.WorkflowTests.test_run_workflow_keeps_and_prints_all_results) ... ok
+test_run_workflow_labels_results_by_step_meaning (test_agentic_workflow.WorkflowTests.test_run_workflow_labels_results_by_step_meaning) ... ok
+test_support_functions_pass_step_directly_to_evaluator (test_agentic_workflow.WorkflowTests.test_support_functions_pass_step_directly_to_evaluator) ... ok
+test_action_planner_returns_clean_steps (test_base_agents.BaseAgentTests.test_action_planner_returns_clean_steps) ... ok
+test_augmented_agent_applies_persona_and_resets_context (test_base_agents.BaseAgentTests.test_augmented_agent_applies_persona_and_resets_context) ... ok
+test_chat_model_can_be_overridden_for_live_execution (test_base_agents.BaseAgentTests.test_chat_model_can_be_overridden_for_live_execution) ... ok
+test_direct_prompt_agent_sends_only_user_prompt (test_base_agents.BaseAgentTests.test_direct_prompt_agent_sends_only_user_prompt) ... ok
+test_evaluation_agent_refines_until_accepted (test_base_agents.BaseAgentTests.test_evaluation_agent_refines_until_accepted) ... ok
+test_evaluation_agent_returns_last_attempt_at_limit (test_base_agents.BaseAgentTests.test_evaluation_agent_returns_last_attempt_at_limit) ... ok
+test_knowledge_agent_includes_only_supplied_knowledge (test_base_agents.BaseAgentTests.test_knowledge_agent_includes_only_supplied_knowledge) ... ok
+test_rag_chunking_finishes_after_the_final_chunk (test_base_agents.BaseAgentTests.test_rag_chunking_finishes_after_the_final_chunk) ... ok
+test_rag_uses_configured_endpoint_for_embeddings (test_base_agents.BaseAgentTests.test_rag_uses_configured_endpoint_for_embeddings) ... ok
+test_router_selects_highest_cosine_similarity (test_base_agents.BaseAgentTests.test_router_selects_highest_cosine_similarity) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.005s
+
+OK
+
+--- Interaction 1 ---
+ Step 1: Worker agent generates a response to the prompt
+Prompt:
+Capital?
+Worker Agent Response:
+worker:Capital?
+ Step 2: Evaluator agent judges the response
+Evaluator Agent Evaluation:
+No, the format is wrong.
+ Step 3: Check if evaluation is positive
+ Step 4: Generate instructions to correct the response
+Instructions to fix:
+Return only a city name.
+ Step 5: Send feedback to worker agent for refinement
+
+--- Interaction 2 ---
+ Step 1: Worker agent generates a response to the prompt
+Prompt:
+The original prompt was: Capital?
+The response to that prompt was: worker:Capital?
+It has been evaluated as incorrect.
+Make only these corrections, do not alter content validity: Return only a city name.
+Worker Agent Response:
+worker:The original prompt was: Capital?
+The response to that prompt was: worker:Capital?
+It has been evaluated as incorrect.
+Make only these corrections, do not alter content validity: Return only a city name.
+ Step 2: Evaluator agent judges the response
+Evaluator Agent Evaluation:
+Yes, it meets the criteria.
+ Step 3: Check if evaluation is positive
+✅ Final solution accepted.
+
+--- Interaction 1 ---
+ Step 1: Worker agent generates a response to the prompt
+Prompt:
+Do work
+Worker Agent Response:
+attempt
+ Step 2: Evaluator agent judges the response
+Evaluator Agent Evaluation:
+No, incomplete
+ Step 3: Check if evaluation is positive
+ Step 4: Generate instructions to correct the response
+Instructions to fix:
+Add details
+ Step 5: Send feedback to worker agent for refinement
+0.9938837346736189
+0.0
+[Router] Best agent: Texas (score=0.994)

@@ -47,6 +47,20 @@ class FakeClient:
 
 
 class BaseAgentTests(unittest.TestCase):
+    def test_chat_model_can_be_overridden_for_live_execution(self):
+        client = FakeClient(chat_outputs=["OK"])
+        with patch.dict(os.environ, {"OPENAI_CHAT_MODEL": "gpt-4.1-mini"}):
+            with patch.object(base_agents, "OpenAI", return_value=client):
+                base_agents.DirectPromptAgent("key").respond("Reply OK")
+        self.assertEqual(client.chat_calls[0]["model"], "gpt-4.1-mini")
+
+    def test_rag_uses_configured_endpoint_for_embeddings(self):
+        client = FakeClient(embeddings={"sample": [1.0, 0.0]})
+        with patch.dict(os.environ, {"OPENAI_BASE_URL": "https://api.openai.com/v1"}):
+            with patch.object(base_agents, "OpenAI", return_value=client) as factory:
+                base_agents.RAGKnowledgePromptAgent("key", "researcher").get_embedding("sample")
+        self.assertEqual(factory.call_args.kwargs["base_url"], "https://api.openai.com/v1")
+
     def test_rag_chunking_finishes_after_the_final_chunk(self):
         agent = base_agents.RAGKnowledgePromptAgent(
             "key", "researcher", chunk_size=10, chunk_overlap=2

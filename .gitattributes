@@ -1,0 +1,2 @@
+# Preserve verbatim terminal output, including model-generated Markdown spacing.
+evidence/live/*.txt -whitespace

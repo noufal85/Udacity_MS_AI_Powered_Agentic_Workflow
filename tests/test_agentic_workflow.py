@@ -14,6 +14,24 @@ sys.path.insert(0, str(PHASE_2))
 
 
 class WorkflowTests(unittest.TestCase):
+    def test_headings_follow_selected_routes_when_steps_share_story_words(self):
+        planner = SimpleNamespace(extract_steps_from_prompt=lambda prompt: [
+            "Define user stories", "Group user stories into features", "Build tasks from user stories"
+        ])
+        router = SimpleNamespace(last_agent_name=None)
+        roles = iter(["Product Manager", "Program Manager", "Development Engineer"])
+
+        def route(step):
+            router.last_agent_name = next(roles)
+            return "Generated output"
+
+        router.route = route
+        output = io.StringIO()
+        with redirect_stdout(output):
+            self.workflow.run_workflow("Create plan", planner=planner, router=router)
+        headings = [line for line in output.getvalue().splitlines() if line.startswith("## ")]
+        self.assertEqual(headings, ["## User Stories", "## Product Features", "## Engineering Tasks"])
+
     @classmethod
     def setUpClass(cls):
         cls.workflow = importlib.import_module("agentic_workflow")

@@ -130,16 +130,19 @@ development_engineer_evaluation_agent = EvaluationAgent(
 
 
 def product_manager_support_function(query):
+    """Evaluate the user-story step with the Product Manager worker."""
     result = product_manager_evaluation_agent.evaluate(query)
     return result["final_response"]
 
 
 def program_manager_support_function(query):
+    """Evaluate the feature-definition step with the Program Manager worker."""
     result = program_manager_evaluation_agent.evaluate(query)
     return result["final_response"]
 
 
 def development_engineer_support_function(query):
+    """Evaluate the engineering-task step with the Development Engineer worker."""
     result = development_engineer_evaluation_agent.evaluate(query)
     return result["final_response"]
 
@@ -174,6 +177,7 @@ routing_agent = RoutingAgent(openai_api_key, agents)
 
 
 def run_workflow(workflow_prompt, planner=None, router=None):
+    """Print a consolidated plan; injectable agents allow offline contract tests."""
     planner = planner or action_planning_agent
     router = router or routing_agent
 
@@ -183,19 +187,28 @@ def run_workflow(workflow_prompt, planner=None, router=None):
 
     workflow_steps = planner.extract_steps_from_prompt(workflow_prompt)
     completed_steps = []
+    selected_routes = []
 
     for step_number, step in enumerate(workflow_steps, start=1):
         print(f"\nExecuting step {step_number}: {step}")
         result = router.route(step)
         completed_steps.append(result)
+        selected_routes.append(getattr(router, "last_agent_name", None))
         print(f"Step {step_number} result:\n{result}")
 
     print("\n*** Consolidated development plan ***")
     for index, (step, result) in enumerate(
         zip(workflow_steps, completed_steps), start=1
     ):
+        route_headings = {
+            "Product Manager": "User Stories",
+            "Program Manager": "Product Features",
+            "Development Engineer": "Engineering Tasks",
+        }
         normalized_step = step.lower()
-        if "stor" in normalized_step:
+        if selected_routes[index - 1] in route_headings:
+            heading = route_headings[selected_routes[index - 1]]
+        elif "stor" in normalized_step:
             heading = "User Stories"
         elif "feature" in normalized_step:
             heading = "Product Features"

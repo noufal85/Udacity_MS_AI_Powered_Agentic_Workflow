@@ -1,0 +1,30 @@
+{
+  "successful_scripts": 8,
+  "user_stories": 15,
+  "features": 6,
+  "engineering_tasks": 10,
+  "story_pattern": "As a/an ..., I want ... so that ...",
+  "feature_fields": [
+    "Feature Name",
+    "Description",
+    "Key Functionality",
+    "User Benefit"
+  ],
+  "task_fields": [
+    "Task ID",
+    "Task Title",
+    "Related User Story",
+    "Description",
+    "Acceptance Criteria",
+    "Estimated Effort",
+    "Dependencies"
+  ],
+  "consolidated_headings": [
+    "User Stories",
+    "Product Features",
+    "Engineering Tasks"
+  ],
+  "source_hashes_verified": true,
+  "log_hashes_verified": true,
+  "status": "PASS"
+}

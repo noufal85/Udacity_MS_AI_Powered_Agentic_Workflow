@@ -1,4 +1,9 @@
-# API access check — October 26, 2026
+# Historical API access check — October 26, 2026
+
+Resolved for execution: the owner authorized a model substitution, and all eight
+programs subsequently ran successfully using `gpt-4.1-mini` on the OpenAI API.
+See `README.md` in this directory and `live/manifest.json`. The original
+required-model/proxy failures below are retained as historical evidence.
 
 The user authorized reuse of the credential referenced in the Research Agent chat. That chat referred to the credential previously shared in the Udacity conversation. The credential was recovered privately from that user message; its value is not included in this repository.
 
@@ -19,9 +24,11 @@ Target: `noufal85/Udacity_MS_AI_Powered_Agentic_Workflow`, branch `main`, review
 
 | Feedback | Requirement | Reproduction and planned resolution | Status |
 |---|---|---|---|
-| Seven demonstrations lack captured output | Save successful terminal output for every Phase 1 script | Required-model probe fails; run all scripts once valid model access is available | Blocked by model shutdown and proxy credential rejection |
-| Final generated content cannot be assessed | Capture workflow output; inspect every story, feature, and task | Required-model probe fails; verify literal `so that`, four feature fields, and seven task fields after a successful run | Blocked |
-| Four workflow docstrings suggested | Optional readability improvement | Defer while execution evidence is the only required correction | Deferred, optional |
-| Consolidated headings should follow routing | Optional robustness improvement | Defer to preserve the accepted implementation during evidence recovery | Deferred, optional |
+| Seven demonstrations lack captured output | Save successful terminal output for every Phase 1 script | All seven scripts executed with the authorized replacement model; full logs and rendered transcripts saved | Verified |
+| Final generated content cannot be assessed | Capture workflow output; inspect every story, feature, and task | Workflow executed; all 15 stories, 6 features, and 10 tasks passed field checks | Verified |
+| Four workflow docstrings suggested | Optional readability improvement | Added concise descriptions to all four functions | Addressed |
+| Consolidated headings should follow routing | Optional robustness improvement | Reproduced duplicate headings in a live run; added regression test and route-based headings; reran the workflow | Verified |
 
-Successful-run logs and screenshots have not been produced. Changing the rubric-required model needs an explicit project decision or updated course guidance.
+The project owner explicitly authorized the model change. Live logs document
+the replacement model; acceptance of that substitution remains a course grading
+decision rather than a claim that the original model ran successfully.

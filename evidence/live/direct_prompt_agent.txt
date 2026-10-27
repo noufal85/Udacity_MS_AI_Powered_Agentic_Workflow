@@ -1,0 +1,2 @@
+The capital of France is Paris.
+The response uses the general knowledge learned by the selected language model.
